@@ -2,18 +2,20 @@
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-  :root {
+  :global(body) {
     --svui-font: 'Roboto', serif;
-    --svui-primary: #ff8a5b;
-    --svui-secondary: #ea526f;
-    --svui-background: #ffffff;
-    --svui-outline: #00000022;
+    --svui-primary: #11d3d3;
+    --svui-secondary: #6279b8;
+    --svui-background: #efefef;
+    --svui-outline: #00000033;
+    --svui-hover: #00000011;
   }
-  :root.dark {
+  :global(body.dark) {
     --svui-font: 'Roboto', serif;
     --svui-primary: #daffed;
     --svui-secondary: #9bf3f0;
     --svui-background: #131016;
-    --svui-outline: #ffffff22;
+    --svui-outline: #ffffff33;
+    --svui-hover: #ffffff11;
   }
 </style>

@@ -15,10 +15,15 @@
   component={Button}
   argTypes={{
     label: { control: 'text' },
+    disabled: { control: 'boolean' },
+    primary: { control: 'boolean' },
   }} />
 
 <Story name="Normal" args={{ label: 'Button' }} />
 <Story name="Primary" args={{ label: 'Button', primary: true }} />
+<Story
+  name="Disabled"
+  args={{ label: 'Button', primary: true, disabled: true }} />
 
 <style>
 </style>

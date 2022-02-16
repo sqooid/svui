@@ -1,9 +1,12 @@
 <script lang="ts">
   export let label = ''
   export let primary = false
+  export let disabled = false
+
+  let type = 'normal'
+  if (primary) type = 'primary'
 
   const onClick = (e) => {
-    console.log(e)
     const x = e.offsetX
     const y = e.offsetY
     const elem = e.target
@@ -18,15 +21,20 @@
     ripple.classList.add('ripple-overlay')
     e.target.appendChild(ripple)
 
-    console.log(radius)
-
     setTimeout(() => {
       e.target.removeChild(ripple)
     }, 500)
   }
 </script>
 
-<button class="svui-button" class:primary on:click={onClick}>{label}</button>
+<button
+  class={'svui-button ' + type}
+  class:disabled
+  on:click={onClick}
+  on:click
+  {disabled}>
+  <span class="svui-button-text">{label}</span>
+</button>
 
 <style>
   @keyframes ripple {
@@ -39,7 +47,7 @@
       opacity: 0;
     }
   }
-  :global(.ripple-overlay) {
+  .svui-button :global(.ripple-overlay) {
     border-radius: 50%;
     position: absolute;
     background-color: black;
@@ -50,6 +58,7 @@
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-play-state: running;
+    user-select: none;
   }
   .svui-button {
     position: relative;
@@ -62,14 +71,25 @@
     background-color: #0000;
     border: none;
     outline: none;
-    transition-property: color background-color;
+    transition-property: color, background-color, filter;
     transition-duration: 0.1s;
   }
-  .svui-button:hover {
-    backdrop-filter: brightness(95%);
+  .svui-button-text {
+    user-select: none;
   }
-  .primary {
+  button:global(.disabled) {
+    filter: grayscale(100%);
+    pointer-events: none;
+    cursor: auto;
+  }
+  button:global(.normal:hover) {
+    background-color: var(--svui-hover);
+  }
+  button:global(.primary) {
     background-color: var(--svui-primary);
     color: var(--svui-background);
+  }
+  button:global(.primary:hover) {
+    backdrop-filter: brightness(50%);
   }
 </style>

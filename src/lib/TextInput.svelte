@@ -6,7 +6,6 @@
   let focused = false
 
   const onFocus = (e) => {
-    console.log(e)
     focused = true
   }
   const onBlur = (e) => {
