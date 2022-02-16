@@ -74,6 +74,9 @@
     transition-property: color, background-color, filter;
     transition-duration: 0.1s;
   }
+  .svui-button:focus-visible {
+    outline: 2px solid var(--svui-secondary);
+  }
   .svui-button-text {
     user-select: none;
   }

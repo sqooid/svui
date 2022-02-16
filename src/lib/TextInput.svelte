@@ -40,7 +40,6 @@
     pointer-events: none;
     font-family: var(--svui-font);
     position: absolute;
-
     left: 10px;
     background-color: inherit;
   }
@@ -61,11 +60,13 @@
   }
   .svui-text-input {
     pointer-events: all;
+    background-color: inherit;
     font-family: var(--svui-font);
     border: none;
     outline: none;
     border-radius: 5px;
     border: 1px solid var(--svui-outline);
+    color: var(--svui-text);
     padding: 10px;
   }
 </style>

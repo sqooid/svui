@@ -6,9 +6,7 @@
 
 <Template let:args>
   <ThemeDecorator>
-    <div style="background-color: white;">
-      <TextInput {...args} />
-    </div>
+    <TextInput {...args} />
   </ThemeDecorator>
 </Template>
 
