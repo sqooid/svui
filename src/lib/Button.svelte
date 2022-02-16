@@ -43,7 +43,7 @@
   @keyframes ripple {
     0% {
       transform: scale(0);
-      opacity: 0.1;
+      opacity: 0.2;
     }
     100% {
       transform: scale(1);

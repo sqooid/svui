@@ -28,6 +28,7 @@
     right: 0;
     padding: 20px;
     font-family: var(--svui-font);
+    /* color: var(--svui-text); */
     background-color: var(--svui-background);
     transition-property: background-color, color;
     transition-timing-function: ease-in-out;

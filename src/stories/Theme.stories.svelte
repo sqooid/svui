@@ -14,9 +14,9 @@
   }
 </script>
 
-<Meta title="Extra/Theme" component={Switch} />
+<Meta title="Extra/Theme" />
 
-<Template>
+<Template let:args>
   <ThemeDecorator>
     <Switch bind:checked={isDarkMode} on:click={onChange} />
   </ThemeDecorator>
