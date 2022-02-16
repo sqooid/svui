@@ -7,11 +7,14 @@
   if (primary) type = 'primary'
 
   const onClick = (e) => {
+    const elem = e.target
+    const rect = elem.getBoundingClientRect()
     const x = e.offsetX
     const y = e.offsetY
-    const elem = e.target
-    const width = elem.getBoundingClientRect().width
-    const height = elem.getBoundingClientRect().height
+    console.log(e)
+    console.log(x, y)
+    const width = rect.width
+    const height = rect.height
     const radius = Math.max(width, height)
     const ripple = document.createElement('div')
     ripple.style.left = x - radius + 'px'
@@ -78,6 +81,7 @@
     outline: 2px solid var(--svui-secondary);
   }
   .svui-button-text {
+    pointer-events: none;
     user-select: none;
   }
   button:global(.disabled) {

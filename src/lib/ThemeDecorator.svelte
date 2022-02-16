@@ -18,7 +18,7 @@
     --svui-secondary: #9bf3f0;
     --svui-background: #131016;
     --svui-outline: #ffffff33;
-    --svui-hover: #ffffff11;
+    --svui-hover: #ffffff22;
   }
   :global(#root) {
     position: absolute;
