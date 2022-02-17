@@ -73,7 +73,7 @@
     cursor: auto;
   }
   button:global(.normal:hover) {
-    background-color: var(--svui-hover);
+    background-color: var(--svui-elev-1);
   }
   button:global(.primary) {
     background-color: var(--svui-primary);

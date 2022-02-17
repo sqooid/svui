@@ -34,7 +34,7 @@
     width: var(--width);
     height: var(--height);
     border-radius: 100vw;
-    background-color: var(--svui-outline);
+    background-color: var(--svui-elev-2);
     transition-property: background-color, transform;
     transition-duration: 0.2s;
     transition-timing-function: ease-out;

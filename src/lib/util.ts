@@ -27,10 +27,17 @@ export function createRipple(e: ClickEvent, options?: RippleOptions) {
   const height = rect.height
   const radius = Math.max(width, height)
   const ripple = document.createElement('div')
-  ripple.style.left = x - radius + 'px'
-  ripple.style.top = y - radius + 'px'
-  ripple.style.width = radius * 2 + 'px'
-  ripple.style.height = radius * 2 + 'px'
+  const style = ripple.style
+  style.left = x - radius + 'px'
+  style.top = y - radius + 'px'
+  style.width = radius * 2 + 'px'
+  style.height = radius * 2 + 'px'
+  style.borderRadius = '50%'
+  style.position = 'absolute'
+  style.backgroundColor = 'black'
+  style.pointerEvents = 'none'
+  style.userSelect = 'none'
+
   ripple.classList.add('ripple-overlay')
   e.target.appendChild(ripple)
   ripple.animate(

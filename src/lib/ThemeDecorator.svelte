@@ -1,3 +1,11 @@
+<script lang="ts">
+  export let padding = true
+
+  if (!padding) {
+    document.getElementById('root').style.padding = '0'
+  }
+</script>
+
 <slot />
 
 <style>
@@ -8,8 +16,8 @@
     --svui-primary: #11d3d3;
     --svui-secondary: #6279b8;
     --svui-background: #fafafa;
-    --svui-outline: #00000033;
-    --svui-hover: #00000011;
+    --svui-elev-2: #00000033;
+    --svui-elev-1: #00000011;
   }
   :global(body.dark) {
     --svui-font: 'Roboto', serif;
@@ -17,8 +25,8 @@
     --svui-primary: #daffed;
     --svui-secondary: #9bf3f0;
     --svui-background: #131016;
-    --svui-outline: #ffffff33;
-    --svui-hover: #ffffff22;
+    --svui-elev-2: #ffffff33;
+    --svui-elev-1: #ffffff22;
   }
   :global(#root) {
     position: absolute;
@@ -28,7 +36,6 @@
     right: 0;
     padding: 20px;
     font-family: var(--svui-font);
-    /* color: var(--svui-text); */
     background-color: var(--svui-background);
     transition-property: background-color, color;
     transition-timing-function: ease-in-out;

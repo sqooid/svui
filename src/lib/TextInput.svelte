@@ -50,7 +50,7 @@
     transition-property: transform color;
     transition-timing-function: ease-out;
     transition-duration: 0.1s;
-    color: var(--svui-outline);
+    color: var(--svui-elev-2);
     top: 9.5px;
   }
   :global(.svui-text-input-label-text.focused) {
@@ -65,7 +65,7 @@
     border: none;
     outline: none;
     border-radius: 5px;
-    border: 1px solid var(--svui-outline);
+    border: 1px solid var(--svui-elev-2);
     color: var(--svui-text);
     padding: 10px;
   }
