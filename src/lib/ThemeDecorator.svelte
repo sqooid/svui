@@ -1,12 +1,21 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
+
   export let padding = true
 
-  if (!padding) {
-    document.getElementById('root').style.padding = '0'
-  }
+  let decorator
+
+  onMount(() => {
+    if (!padding) {
+      console.log(decorator)
+      decorator.style.padding = '0'
+    }
+  })
 </script>
 
-<slot />
+<div class="decorator" bind:this={decorator}>
+  <slot />
+</div>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
@@ -28,7 +37,7 @@
     --svui-elev-2: #ffffff33;
     --svui-elev-1: #ffffff22;
   }
-  :global(#root) {
+  .decorator {
     position: absolute;
     top: 0;
     bottom: 0;
