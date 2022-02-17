@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { createRipple } from './util'
+
   export let label = ''
   export let primary = false
   export let disabled = false
@@ -7,26 +9,7 @@
   if (primary) type = 'primary'
 
   const onClick = (e) => {
-    const elem = e.target
-    const rect = elem.getBoundingClientRect()
-    const x = e.offsetX
-    const y = e.offsetY
-    console.log(e)
-    console.log(x, y)
-    const width = rect.width
-    const height = rect.height
-    const radius = Math.max(width, height)
-    const ripple = document.createElement('div')
-    ripple.style.left = x - radius + 'px'
-    ripple.style.top = y - radius + 'px'
-    ripple.style.width = radius * 2 + 'px'
-    ripple.style.height = radius * 2 + 'px'
-    ripple.classList.add('ripple-overlay')
-    e.target.appendChild(ripple)
-
-    setTimeout(() => {
-      e.target.removeChild(ripple)
-    }, 500)
+    createRipple(e)
   }
 </script>
 
