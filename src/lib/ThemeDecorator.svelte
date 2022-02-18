@@ -1,4 +1,5 @@
 <script lang="ts">
+  import '$lib/theme.css'
   import { onMount } from 'svelte'
 
   export let padding = true
@@ -18,25 +19,6 @@
 </div>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-  :global(body) {
-    --svui-font: 'Roboto', serif;
-    --svui-text: #000000;
-    --svui-primary: #11d3d3;
-    --svui-secondary: #6279b8;
-    --svui-background: #fafafa;
-    --svui-elev-2: #00000033;
-    --svui-elev-1: #00000011;
-  }
-  :global(body.dark) {
-    --svui-font: 'Roboto', serif;
-    --svui-text: #fefefe;
-    --svui-primary: #daffed;
-    --svui-secondary: #9bf3f0;
-    --svui-background: #131016;
-    --svui-elev-2: #ffffff33;
-    --svui-elev-1: #ffffff22;
-  }
   .decorator {
     position: absolute;
     top: 0;
