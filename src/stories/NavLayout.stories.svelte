@@ -1,9 +1,9 @@
 <script lang="ts">
-  import NavLayout from '../lib/NavLayout.svelte'
-  import ThemeDecorator from '../lib/ThemeDecorator.svelte'
+  import NavLayout from '$lib/NavLayout.svelte'
+  import ThemeDecorator from '$lib/ThemeDecorator.svelte'
   import { Meta, Story, Template } from '@storybook/addon-svelte-csf'
-  import IconNavButton from '../lib/IconNavButton.svelte'
-  import Icon from '../lib/Icon.svelte'
+  import IconNavButton from '$lib/IconNavButton.svelte'
+  import Icon from '$lib/Icon.svelte'
 
   let url = '1'
   const onClick1 = (e) => {

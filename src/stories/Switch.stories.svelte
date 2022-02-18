@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Switch from '../lib/Switch.svelte'
-  import ThemeDecorator from '../lib/ThemeDecorator.svelte'
+  import Switch from '$lib/Switch.svelte'
+  import ThemeDecorator from '$lib/ThemeDecorator.svelte'
   import { Meta, Story, Template } from '@storybook/addon-svelte-csf'
   let checked
 </script>

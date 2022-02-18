@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Switch from '../lib/Switch.svelte'
+  import Switch from '$lib/Switch.svelte'
   import { Meta, Story, Template } from '@storybook/addon-svelte-csf'
-  import ThemeDecorator from '../lib/ThemeDecorator.svelte'
+  import ThemeDecorator from '$lib/ThemeDecorator.svelte'
 
   let isDarkMode = false
   const onChange = () => {

@@ -1,7 +1,9 @@
 <script lang="ts">
+  import { SvuiEvent } from '$lib/utils/native-event'
+
   import { createEventDispatcher } from 'svelte'
 
-  import { createRipple, dispatchNative } from './util'
+  import { createRipple } from './util'
 
   const dispatch = createEventDispatcher()
 
@@ -11,7 +13,7 @@
   let ref
 
   const onClick = (e) => {
-    dispatchNative(ref, 'navclick', { x: e.x, y: e.y })
+    SvuiEvent.dispatch(ref, 'navclick', { x: e.x, y: e.y })
     createRipple(e)
   }
 

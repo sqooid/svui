@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Button from '../lib/Button.svelte'
-  import ThemeDecorator from '../lib/ThemeDecorator.svelte'
+  import Button from '$lib/Button.svelte'
+  import ThemeDecorator from '$lib/ThemeDecorator.svelte'
   import { Meta, Story, Template } from '@storybook/addon-svelte-csf'
 </script>
 

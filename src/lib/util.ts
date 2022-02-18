@@ -52,32 +52,3 @@ export function createRipple(e: ClickEvent, options?: RippleOptions) {
     e.target.removeChild(ripple)
   }, duration)
 }
-
-type NativeEventsMap = {
-  navclick: { x: number; y: number }
-}
-type NativeEvents = keyof NativeEventsMap
-type NativeEventsArgs = NativeEventsMap[NativeEvents]
-
-export function dispatchNative(
-  node: HTMLElement,
-  name: NativeEvents,
-  args: NativeEventsArgs,
-) {
-  const event = new CustomEvent(name, {
-    detail: args,
-    bubbles: true,
-    composed: true,
-  })
-  node.dispatchEvent(event)
-}
-
-export function handleNative(
-  node: HTMLElement,
-  name: NativeEvents,
-  callback: (args: NativeEventsArgs) => void,
-) {
-  node.addEventListener(name, (e: CustomEvent) => {
-    callback(e.detail)
-  })
-}

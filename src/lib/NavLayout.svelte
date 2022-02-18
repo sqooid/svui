@@ -1,16 +1,15 @@
 <script lang="ts">
-  import { handleNative } from '$lib/util'
-
   import { onMount } from 'svelte'
+  import IconNavBar from '$lib/IconNavBar.svelte'
+  import NavTransition from '$lib/NavTransition.svelte'
+  import { SvuiEvent } from '$lib/utils/native-event'
 
-  import IconNavBar from '../lib/IconNavBar.svelte'
-  import NavTransition from '../lib/NavTransition.svelte'
   export let url = ''
   let x = 0
   let y = 0
   let ref
   onMount(() => {
-    handleNative(ref, 'navclick', (e) => {
+    SvuiEvent.handle(ref, 'navclick', (e) => {
       x = e.x
       y = e.y
     })

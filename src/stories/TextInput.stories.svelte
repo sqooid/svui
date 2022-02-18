@@ -1,6 +1,6 @@
 <script lang="ts">
-  import TextInput from '../lib/TextInput.svelte'
-  import ThemeDecorator from '../lib/ThemeDecorator.svelte'
+  import TextInput from '$lib/TextInput.svelte'
+  import ThemeDecorator from '$lib/ThemeDecorator.svelte'
   import { Meta, Story, Template } from '@storybook/addon-svelte-csf'
 </script>
 
