@@ -1,5 +1,4 @@
 <script lang="ts">
-  export let size = 60
   export let x = 0
   export let y = 0
 </script>
