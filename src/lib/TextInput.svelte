@@ -1,27 +1,11 @@
 <script lang="ts">
   export let value = ''
   export let placeholder = ''
-  let textInputRef
-  let textInputLabelTextRef
   let focused = false
-
-  const onFocus = (e) => {
-    focused = true
-  }
-  const onBlur = (e) => {
-    if (value.length === 0) {
-      focused = false
-    }
-  }
 </script>
 
 <div class="svui-text-input-wrapper">
-  <input
-    class="svui-text-input"
-    type="text"
-    bind:value
-    on:focus={onFocus}
-    on:blur={onBlur} />
+  <input class="svui-text-input" type="text" bind:value placeholder=" " />
   <label for="" class="svui-text-input-label">
     <span class="svui-text-input-label-text" class:focused>
       {placeholder}
@@ -53,7 +37,10 @@
     color: var(--svui-elev-2);
     top: 9.5px;
   }
-  :global(.svui-text-input-label-text.focused) {
+  .svui-text-input:focus + .svui-text-input-label .svui-text-input-label-text,
+  .svui-text-input:not(:placeholder-shown)
+    + .svui-text-input-label
+    .svui-text-input-label-text {
     color: var(--svui-primary);
     font-size: 12px;
     top: -7px;
