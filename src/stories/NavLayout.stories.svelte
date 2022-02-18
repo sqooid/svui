@@ -5,9 +5,6 @@
   import IconNavButton from '../lib/IconNavButton.svelte'
   import Icon from '../lib/Icon.svelte'
 
-  let x = 0
-  let y = 0
-
   let url = '1'
   const onClick1 = (e) => {
     url = '1'
@@ -19,7 +16,7 @@
 
 <Template let:args>
   <ThemeDecorator padding={false}>
-    <NavLayout {url} {x} {y}>
+    <NavLayout {url}>
       <IconNavButton on:click={onClick1}>
         <Icon>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

@@ -6,8 +6,8 @@
   import IconNavBar from '../lib/IconNavBar.svelte'
   import NavTransition from '../lib/NavTransition.svelte'
   export let url = ''
-  export let x = 0
-  export let y = 0
+  let x = 0
+  let y = 0
   let ref
   onMount(() => {
     handleNative(ref, 'navclick', (e) => {
