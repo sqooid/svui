@@ -1,5 +1,15 @@
+/**
+ * Use to dispatch and handle synthetic custom events that bubble
+ */
 export class NativeEvent<T> {
-  dispatch(node: HTMLElement, name: keyof T, args: T[keyof T]) {
+  /**
+   * Dispatch a custom event
+   * @param node HTML node where event should begin
+   * @param name Name (type) of event
+   * @param args Object containing info to be passed with event
+   * @returns
+   */
+  dispatch(node: HTMLElement, name: keyof T, args?: T[keyof T]) {
     if (typeof name !== 'string') return
     const event = new CustomEvent(name, {
       detail: args,
@@ -9,10 +19,17 @@ export class NativeEvent<T> {
     node.dispatchEvent(event)
   }
 
+  /**
+   * Handles a custom event
+   * @param node HTML node where event should be caught
+   * @param name Name (type) of event
+   * @param callback Callback that is called when event is handled
+   * @returns
+   */
   handle(
     node: HTMLElement,
     name: keyof T,
-    callback: (args: T[keyof T]) => void,
+    callback: (args?: T[keyof T]) => void,
   ) {
     if (typeof name !== 'string') return
     node.addEventListener(name, (e: CustomEvent) => {
