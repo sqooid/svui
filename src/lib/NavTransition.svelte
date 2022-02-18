@@ -6,7 +6,6 @@
   export let y = 0
 
   const ripple = (node, { x = 0, y = 0, duration = 200, delay = 0 }) => {
-    console.log('ripple', x, y)
     const rect = node.getBoundingClientRect()
     const radius = Math.max(rect.width, rect.height)
     return {

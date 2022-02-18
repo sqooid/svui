@@ -52,3 +52,22 @@ export function createRipple(e: ClickEvent, options?: RippleOptions) {
     e.target.removeChild(ripple)
   }, duration)
 }
+
+export function dispatchNative(node: HTMLElement, name: string, args: any) {
+  const event = new CustomEvent(name, {
+    detail: args,
+    bubbles: true,
+    composed: true,
+  })
+  node.dispatchEvent(event)
+}
+
+export function handleNative(
+  node: HTMLElement,
+  name: string,
+  callback: (args: any) => void,
+) {
+  node.addEventListener(name, (e: CustomEvent) => {
+    callback(e.detail)
+  })
+}

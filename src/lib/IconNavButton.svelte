@@ -1,17 +1,26 @@
 <script lang="ts">
-  import { createRipple } from './util'
+  import { createEventDispatcher } from 'svelte'
+
+  import { createRipple, dispatchNative } from './util'
+
+  const dispatch = createEventDispatcher()
 
   export let size = 60
   export let circle = true
   export let fill = false
+  let ref
+
   const onClick = (e) => {
+    dispatchNative(ref, 'navclick', { x: e.x, y: e.y })
     createRipple(e)
   }
+
   let iconSize = fill ? size : size / 1.41
   let padding = (size - iconSize) / 2
 </script>
 
 <button
+  bind:this={ref}
   style={`width:${size}px;height:${size};padding:${padding}px`}
   class="svui-icon-nav-button"
   class:circle

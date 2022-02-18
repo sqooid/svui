@@ -10,18 +10,10 @@
 
   let url = '1'
   const onClick1 = (e) => {
-    onNav(e)
     url = '1'
   }
   const onClick2 = (e) => {
-    onNav(e)
     url = '2'
-  }
-  const onNav = (e) => {
-    console.log(e)
-    x = e.x
-    y = e.y
-    console.log(x, y)
   }
 </script>
 

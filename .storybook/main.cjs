@@ -1,3 +1,4 @@
+const path = require('path')
 module.exports = {
   stories: [
     '../src/stories/*.stories.mdx',
@@ -12,4 +13,11 @@ module.exports = {
   // "svelteOptions": {
   //   "preprocess": require("../svelte.config.js").preprocess
   // }
+  webpackFinal: async (config, { configType }) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      $lib: path.resolve(__dirname, '../src/lib'),
+    }
+    return config
+  },
 }

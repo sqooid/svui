@@ -1,12 +1,23 @@
 <script lang="ts">
+  import { handleNative } from '$lib/util'
+
+  import { onMount } from 'svelte'
+
   import IconNavBar from '../lib/IconNavBar.svelte'
   import NavTransition from '../lib/NavTransition.svelte'
   export let url = ''
   export let x = 0
   export let y = 0
+  let ref
+  onMount(() => {
+    handleNative(ref, 'navclick', (e) => {
+      x = e.x
+      y = e.y
+    })
+  })
 </script>
 
-<div class="svui-nav-layout-wrapper">
+<div class="svui-nav-layout-wrapper" bind:this={ref}>
   <IconNavBar>
     <slot />
   </IconNavBar>
