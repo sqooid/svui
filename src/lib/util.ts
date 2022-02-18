@@ -53,7 +53,17 @@ export function createRipple(e: ClickEvent, options?: RippleOptions) {
   }, duration)
 }
 
-export function dispatchNative(node: HTMLElement, name: string, args: any) {
+type NativeEventsMap = {
+  navclick: { x: number; y: number }
+}
+type NativeEvents = keyof NativeEventsMap
+type NativeEventsArgs = NativeEventsMap[NativeEvents]
+
+export function dispatchNative(
+  node: HTMLElement,
+  name: NativeEvents,
+  args: NativeEventsArgs,
+) {
   const event = new CustomEvent(name, {
     detail: args,
     bubbles: true,
@@ -64,8 +74,8 @@ export function dispatchNative(node: HTMLElement, name: string, args: any) {
 
 export function handleNative(
   node: HTMLElement,
-  name: string,
-  callback: (args: any) => void,
+  name: NativeEvents,
+  callback: (args: NativeEventsArgs) => void,
 ) {
   node.addEventListener(name, (e: CustomEvent) => {
     callback(e.detail)
