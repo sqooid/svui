@@ -18,6 +18,10 @@ module.exports = {
       ...config.resolve.alias,
       $lib: path.resolve(__dirname, '../src/lib'),
     }
+    const svelteLoader = config.module.rules.find(
+      (r) => r.loader && r.loader.includes('svelte-loader'),
+    )
+    svelteLoader.options.preprocess = require('svelte-preprocess')({})
     return config
   },
 }
