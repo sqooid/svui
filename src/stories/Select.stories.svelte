@@ -3,6 +3,7 @@
   import ThemeDecorator from '$lib/ThemeDecorator.svelte'
   import { Meta, Story, Template } from '@storybook/addon-svelte-csf'
   const options = [
+    { value: '', title: '' },
     {
       value: 'cat',
       title: 'Cat',

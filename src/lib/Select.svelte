@@ -25,9 +25,13 @@
   let valid = true
   let edited = false
 
-  $: filteredOptions = options.filter((option) => {
-    return wildcardStrInObj(inputValue, option, { ignore: ['image', 'color'] })
-  })
+  $: filteredOptions = searchable
+    ? options.filter((option) => {
+        return wildcardStrInObj(inputValue, option, {
+          ignore: ['image', 'color'],
+        })
+      })
+    : options
   let optionRefs: HTMLElement[] = []
   for (let i = 0; i < options.length; ++i) {
     optionRefs.push(null)
@@ -61,6 +65,10 @@
     expanded = false
     valid = !edited
     inputRef.blur()
+  }
+  const onClick = (e) => {
+    if (expanded && !searchable && optionRefs.indexOf(e.target) === -1) onBlur()
+    else onFocus()
   }
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
@@ -107,7 +115,7 @@
   }
 </script>
 
-<div class="svui-select" on:click={onFocus} class:disabled>
+<div class="svui-select" class:disabled on:mousedown|stopPropagation={onClick}>
   <input
     disabled={disabled || !searchable}
     bind:value={inputValue}
@@ -149,6 +157,7 @@
 
 <style>
   .svui-select {
+    user-select: none;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -218,7 +227,12 @@
     cursor: auto;
   }
   .svui-select-value:disabled {
+    user-select: none;
     pointer-events: none;
+  }
+  .svui-select-value:disabled:not(.disabled) {
+    pointer-events: all;
+    cursor: pointer;
   }
   .svui-select-value:not(.valid) {
     border-color: var(--svui-error);
