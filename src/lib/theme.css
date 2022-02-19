@@ -8,6 +8,8 @@ body {
   --svui-elev-2: #c7c7c7;
   --svui-elev-1: #e9e9e9;
   --svui-error: #ff0055;
+  --svui-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%),
+    0 8px 10px 1px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%);
 }
 body.dark {
   --svui-font: 'Roboto', serif;

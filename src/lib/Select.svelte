@@ -26,7 +26,7 @@
   let edited = false
 
   $: filteredOptions = options.filter((option) => {
-    return wildcardStrInObj(inputValue, option)
+    return wildcardStrInObj(inputValue, option, { ignore: ['image', 'color'] })
   })
   let optionRefs: HTMLElement[] = []
   for (let i = 0; i < options.length; ++i) {
@@ -96,7 +96,7 @@
     }
     if (e.key === 'ArrowUp') {
       if (index > 0) optionRefs[index - 1].focus()
-      else optionRefs[filteredOptions.length - 1].focus()
+      else inputRef.focus()
       return
     }
     if (e.key === 'ArrowDown') {
@@ -170,6 +170,8 @@
     transform: rotate(-0.5turn);
   }
   .svui-select-options {
+    border-radius: 5px;
+    box-shadow: var(--svui-shadow);
     position: absolute;
     width: 100%;
     top: 100%;
@@ -204,6 +206,7 @@
     cursor: pointer;
     outline: none;
     border-radius: 5px;
+    font-size: 16px;
     pointer-events: all;
     background-color: inherit;
     font-family: var(--svui-font);
