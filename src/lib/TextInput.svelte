@@ -15,6 +15,7 @@
 
 <style>
   .svui-text-input-wrapper {
+    margin-top: 7px;
     position: relative;
     display: flex;
     flex-direction: column;
