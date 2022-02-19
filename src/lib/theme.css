@@ -5,8 +5,8 @@ body {
   --svui-primary: #11d3d3;
   --svui-secondary: #6279b8;
   --svui-background: #fafafa;
-  --svui-elev-2: #00000033;
-  --svui-elev-1: #00000011;
+  --svui-elev-2: #c7c7c7;
+  --svui-elev-1: #e9e9e9;
 }
 body.dark {
   --svui-font: 'Roboto', serif;
@@ -14,6 +14,6 @@ body.dark {
   --svui-primary: #daffed;
   --svui-secondary: #9bf3f0;
   --svui-background: #131016;
-  --svui-elev-2: #ffffff33;
-  --svui-elev-1: #ffffff22;
+  --svui-elev-2: #464349;
+  --svui-elev-1: #353238;
 }
