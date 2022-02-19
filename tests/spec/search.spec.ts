@@ -67,6 +67,27 @@ describe('wildcardStrInObj', () => {
     }
     expect(wildcardStrInObj(query, obj)).to.be.true
   })
+  it('finds in array', () => {
+    const obj = [
+      {
+        value: 'cat',
+        title: 'Cat',
+        description: 'Will claw your face',
+      },
+      {
+        value: 'dog',
+        title: 'Dog',
+        description: "Man's best friend",
+      },
+      {
+        value: 'parrot',
+        title: 'Parrot',
+        description: 'Teach it how to swear',
+      },
+    ]
+    const query = 'will'
+    expect(wildcardStrInObj(query, obj)).to.be.true
+  })
   it('does not find when not there', () => {
     const query = 'cat'
     const obj = {
@@ -79,5 +100,18 @@ describe('wildcardStrInObj', () => {
       b: 'chicken',
     }
     expect(wildcardStrInObj(query, obj)).to.be.false
+  })
+  it('does not find when in ignored field', () => {
+    const query = 'cat'
+    const obj = {
+      c: 123,
+      d: {
+        d: 123123,
+        a: 'cat',
+        b: 'dasdhai',
+      },
+      b: 'chicken',
+    }
+    expect(wildcardStrInObj(query, obj, { ignore: ['a'] })).to.be.false
   })
 })
