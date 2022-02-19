@@ -3,11 +3,10 @@ export function wildcardStrInStr(
   str: string,
   options?: { caseSensitive?: boolean },
 ): boolean {
-  if (!options?.caseSensitive) {
-    query = query.toLowerCase()
-    str = str.toLowerCase()
-  }
-  const re = new RegExp(query.split('').join('.*'))
+  const re = new RegExp(
+    query.split('').join('.*'),
+    options?.caseSensitive ? '' : 'i',
+  )
   return re.test(str)
 }
 
