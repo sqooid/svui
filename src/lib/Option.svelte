@@ -7,7 +7,12 @@
   export let ref
 </script>
 
-<div class="svui-option" tabindex="0" bind:this={ref} on:click on:keydown>
+<div
+  class="svui-option"
+  tabindex="0"
+  bind:this={ref}
+  on:click|stopPropagation
+  on:keydown>
   <span>{title}</span>
   {#if description}
     <span>

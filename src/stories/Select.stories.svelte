@@ -28,7 +28,8 @@
 
 <Meta title="Components/Select" component={Select} />
 
-<Story name="Normal" />
+<Story name="Searchable" args={{ searchable: true }} />
+<Story name="Not searchable" />
 <Story name="Disabled" args={{ disabled: true }} />
 
 <style>

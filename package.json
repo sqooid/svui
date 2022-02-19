@@ -13,7 +13,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "publish": "npm publish ./package --access public",
-    "test": "ts-mocha --paths tests/**/*.ts -r dotenv/config"
+    "test": "ts-mocha -p tsconfig.test.json --paths tests/**/*.ts -r dotenv/config"
   },
   "devDependencies": {
     "@babel/core": "^7.17.2",

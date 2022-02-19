@@ -1,5 +1,6 @@
 <script lang="ts">
   import Option from '$lib/Option.svelte'
+  import { wildcardStrInObj } from '$lib/utils/search'
   import { expand } from '$lib/utils/transition'
 
   export let disabled = false
@@ -16,17 +17,26 @@
   }
 
   export let value = ''
+  let inputValue = ''
   $: value = selected ? selected.value : ''
   let selected: Option = { value: '', title: '' }
   let expanded = false
   let focused = false
+  let valid = true
+  let edited = false
 
-  let filteredOptions = options
+  $: filteredOptions = options.filter((option) => {
+    return wildcardStrInObj(inputValue, option)
+  })
   let optionRefs: HTMLElement[] = []
   for (let i = 0; i < options.length; ++i) {
     optionRefs.push(null)
   }
   let inputRef: HTMLElement
+
+  const onInput = () => {
+    edited = true
+  }
 
   const outerClickListener = (e: MouseEvent) => {
     if ([inputRef, ...optionRefs].indexOf(e.target as HTMLElement) === -1) {
@@ -39,6 +49,7 @@
   }
 
   const onFocus = () => {
+    if (disabled) return
     focused = true
     expanded = true
     document.documentElement.addEventListener('mousedown', outerClickListener, {
@@ -46,8 +57,10 @@
     })
   }
   const onBlur = () => {
-    if (!value) focused = false
+    if (!inputValue) focused = false
     expanded = false
+    valid = !edited
+    inputRef.blur()
   }
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
@@ -58,11 +71,19 @@
       if (optionRefs[0]) optionRefs[0].focus()
       return
     }
+    if (e.key === 'Enter') {
+      if (filteredOptions[0]) {
+        onSelect(0)
+      }
+      return
+    }
   }
 
   const onSelect = (index: number) => {
-    selected = filteredOptions[index]
-    expanded = false
+    value = filteredOptions[index].value
+    inputValue = filteredOptions[index].title
+    edited = false
+    onBlur()
   }
   const onKeyDownOption = (e: KeyboardEvent, index: number) => {
     if (e.key === 'Enter' || e.key === 'Space') {
@@ -86,14 +107,17 @@
   }
 </script>
 
-<div class="svui-select">
+<div class="svui-select" on:click={onFocus} class:disabled>
   <input
-    {disabled}
-    bind:value={selected.title}
+    disabled={disabled || !searchable}
+    bind:value={inputValue}
     bind:this={inputRef}
     tabindex="0"
     class="svui-select-value"
-    placeholder=" "
+    class:searchable
+    class:disabled
+    class:valid
+    on:input={onInput}
     on:focus={onFocus}
     on:keydown={onKeyDown} />
   <label for="" class="svui-select-label">
@@ -101,7 +125,7 @@
       {placeholder}
     </span>
   </label>
-  <svg class="svui-select-arrow" class:focused viewBox="0 0 24 24">
+  <svg class="svui-select-arrow" class:expanded viewBox="0 0 24 24">
     <path
       d="M15.88 9.29L12 13.17L8.12 9.29a.996.996 0 1 0-1.41 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59a.996.996 0 0 0 0-1.41c-.39-.38-1.03-.39-1.42 0z"
       fill="currentColor" />
@@ -116,7 +140,6 @@
             onSelect(i)
           }}
           on:keydown={(e) => {
-            console.log(e)
             onKeyDownOption(e, i)
           }} />
       {/each}
@@ -132,6 +155,9 @@
     background-color: inherit;
     margin-top: 7px;
   }
+  .svui-select:not(.disabled) {
+    cursor: pointer;
+  }
   .svui-select-arrow {
     pointer-events: none;
     color: var(--svui-elev-2);
@@ -140,7 +166,7 @@
     right: 0;
     transition: transform 0.2s ease-out;
   }
-  .svui-select-arrow.focused {
+  .svui-select-arrow.expanded {
     transform: rotate(-0.5turn);
   }
   .svui-select-options {
@@ -175,6 +201,7 @@
   }
   .svui-select-value {
     appearance: none;
+    cursor: pointer;
     outline: none;
     border-radius: 5px;
     pointer-events: all;
@@ -183,5 +210,14 @@
     border: 1px solid var(--svui-elev-2);
     color: var(--svui-text);
     padding: 10px;
+  }
+  .svui-select-value.searchable {
+    cursor: auto;
+  }
+  .svui-select-value:disabled {
+    pointer-events: none;
+  }
+  .svui-select-value:not(.valid) {
+    border-color: var(--svui-error);
   }
 </style>

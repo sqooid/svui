@@ -7,6 +7,7 @@ body {
   --svui-background: #fafafa;
   --svui-elev-2: #c7c7c7;
   --svui-elev-1: #e9e9e9;
+  --svui-error: #ff0055;
 }
 body.dark {
   --svui-font: 'Roboto', serif;
@@ -16,4 +17,5 @@ body.dark {
   --svui-background: #131016;
   --svui-elev-2: #464349;
   --svui-elev-1: #353238;
+  --svui-error: #ff0055;
 }
