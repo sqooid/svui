@@ -42,37 +42,63 @@
     edited = true
   }
 
-  const outerClickListener = (e: MouseEvent) => {
-    if ([inputRef, ...optionRefs].indexOf(e.target as HTMLElement) === -1) {
-      onBlur()
-      document.documentElement.removeEventListener(
-        'mousedown',
-        outerClickListener,
-      )
-    }
-  }
-
-  const onFocus = () => {
-    if (disabled) return
+  const expandOptions = () => {
     focused = true
     expanded = true
     document.documentElement.addEventListener('mousedown', outerClickListener, {
       capture: true,
     })
   }
-  const onBlur = () => {
-    if (!inputValue) focused = false
+  const unexpandOptions = () => {
     expanded = false
+    document.documentElement.removeEventListener(
+      'mousedown',
+      outerClickListener,
+    )
+  }
+
+  const outerClickListener = (e: MouseEvent) => {
+    const isInSelect =
+      [inputRef, ...optionRefs].indexOf(e.target as HTMLElement) !== -1
+    if (!isInSelect && !(!searchable && e.target === inputRef)) {
+      console.log('gay')
+      onUnfocus()
+    }
+  }
+
+  const onFocus = () => {
+    if (disabled) return
+    focused = true
+    console.log('scrub')
+  }
+  const onUnfocus = () => {
+    if (!inputValue) focused = false
+    unexpandOptions()
     valid = !edited
     inputRef.blur()
   }
-  const onClick = (e) => {
-    if (expanded && !searchable && optionRefs.indexOf(e.target) === -1) onBlur()
-    else onFocus()
+  const onBlur = () => {
+    if (!expanded && !inputValue) {
+      focused = false
+    }
+  }
+  const onMouseDown = () => {
+    if (expanded && !searchable) {
+      onUnfocus()
+      return
+    }
+    if (!expanded && !disabled) {
+      expandOptions()
+      return
+    }
   }
   const onKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      onBlur()
+    if (!expanded && e.key !== 'Tab' && e.key !== 'Escape') {
+      expandOptions()
+      return
+    }
+    if (e.key === 'Escape' && expanded) {
+      onUnfocus()
       return
     }
     if (e.key === 'ArrowDown') {
@@ -80,10 +106,14 @@
       return
     }
     if (e.key === 'Enter') {
-      if (filteredOptions[0]) {
+      if (expanded && filteredOptions[0]) {
         onSelect(0)
+        return
       }
-      return
+      if (!expanded && !searchable) {
+        expandOptions()
+        return
+      }
     }
   }
 
@@ -91,7 +121,7 @@
     value = filteredOptions[index].value
     inputValue = filteredOptions[index].title
     edited = false
-    onBlur()
+    onUnfocus()
   }
   const onKeyDownOption = (e: KeyboardEvent, index: number) => {
     if (e.key === 'Enter' || e.key === 'Space') {
@@ -99,7 +129,7 @@
       return
     }
     if (e.key === 'Escape') {
-      onBlur()
+      onUnfocus()
       return
     }
     if (e.key === 'ArrowUp') {
@@ -115,21 +145,26 @@
   }
 </script>
 
-<div class="svui-select" class:disabled on:mousedown|stopPropagation={onClick}>
+<div class="svui-select" class:disabled>
   <input
-    disabled={disabled || !searchable}
+    readonly={!searchable}
+    {disabled}
     bind:value={inputValue}
     bind:this={inputRef}
     tabindex="0"
     class="svui-select-value"
     class:searchable
+    class:focused
+    class:expanded
     class:disabled
     class:valid
+    on:blur={onBlur}
+    on:mousedown={onMouseDown}
     on:input={onInput}
     on:focus={onFocus}
     on:keydown={onKeyDown} />
   <label for="" class="svui-select-label">
-    <span class="svui-select-label-text" class:focused>
+    <span class="svui-select-label-text" class:focused class:searchable>
       {placeholder}
     </span>
   </label>
@@ -205,7 +240,8 @@
     top: 9.5px;
   }
 
-  .svui-select-label-text:global(.focused) {
+  .svui-select-label-text.focused,
+  .svui-select-label-text:focus:not(.searchable) {
     color: var(--svui-primary);
     font-size: 12px;
     top: -7px;
@@ -227,14 +263,20 @@
     cursor: auto;
   }
   .svui-select-value:disabled {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     pointer-events: none;
   }
-  .svui-select-value:disabled:not(.disabled) {
-    pointer-events: all;
+  .svui-select-value:not(.searchable) {
+    user-select: none;
     cursor: pointer;
   }
-  .svui-select-value:not(.valid) {
+  .svui-select-value:not(.valid):not(.expanded) {
     border-color: var(--svui-error);
+  }
+  .svui-select-value:focus-visible {
+    border-color: var(--svui-primary);
   }
 </style>

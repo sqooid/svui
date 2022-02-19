@@ -11,6 +11,7 @@
   tabindex="0"
   bind:this={ref}
   on:click|stopPropagation
+  on:mousedown|stopPropagation
   on:keydown>
   {#if color}
     <div class="svui-option-color" style={`background-color:${color}`} />
@@ -63,12 +64,12 @@
   }
   .svui-option-color {
     border-radius: 5px;
-    width: 39px;
-    height: 39px;
+    width: 19px;
+    height: 19px;
   }
   .svui-option-image {
     object-fit: cover;
-    width: 39px;
-    height: 39px;
+    width: 19px;
+    height: 19px;
   }
 </style>
