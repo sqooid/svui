@@ -50,6 +50,7 @@
     pointer-events: all;
     background-color: inherit;
     font-family: var(--svui-font);
+    font-size: 16px;
     border: none;
     outline: none;
     border-radius: 5px;
