@@ -61,7 +61,6 @@
     const isInSelect =
       [inputRef, ...optionRefs].indexOf(e.target as HTMLElement) !== -1
     if (!isInSelect && !(!searchable && e.target === inputRef)) {
-      console.log('gay')
       onUnfocus()
     }
   }
@@ -69,7 +68,6 @@
   const onFocus = () => {
     if (disabled) return
     focused = true
-    console.log('scrub')
   }
   const onUnfocus = () => {
     if (!inputValue) focused = false
@@ -196,7 +194,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: inherit;
+    background-color: var(--svui-background);
     margin-top: 7px;
   }
   .svui-select:not(.disabled) {
@@ -217,6 +215,7 @@
     border-radius: 5px;
     box-shadow: var(--svui-shadow);
     position: absolute;
+    z-index: 10;
     width: 100%;
     top: 100%;
     display: flex;

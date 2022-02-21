@@ -19,7 +19,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: inherit;
+    background-color: var(--svui-background);
   }
   .svui-text-input-label {
     pointer-events: none;
