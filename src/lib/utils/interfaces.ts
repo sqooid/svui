@@ -1,6 +1,4 @@
-export interface Theme {
-  font: string
-
+export interface ThemeOptions {
   background: string
   text: string
 
@@ -15,11 +13,17 @@ export interface Theme {
 
   error: string
   onError: string
-
-  shadow: string
 }
 
-export interface ThemeOverrides {
-  light?: Partial<Theme>
-  dark?: Partial<Theme>
+export interface GeneralOptions {
+  shadow: string
+  font: string
+}
+
+export interface SvuiOptions {
+  themes: {
+    light: ThemeOptions
+    dark: ThemeOptions
+  }
+  general: GeneralOptions
 }

@@ -12,3 +12,20 @@ export function objToCssVars(obj: any): string {
   }
   return str
 }
+
+/**
+ * Deeply applies properties in source object to target object
+ * @param target
+ * @param source
+ * @returns
+ */
+export function deepAssign<T>(target: T, source: Partial<T>): T {
+  for (const prop in source) {
+    if (typeof source[prop] === 'object' && typeof target[prop] === 'object') {
+      deepAssign(target[prop], source[prop])
+    } else {
+      target[prop] = source[prop]
+    }
+  }
+  return target
+}

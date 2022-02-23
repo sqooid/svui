@@ -2,7 +2,6 @@
   import SvuiRoot from '$lib/SvuiRoot.svelte'
   import Switch from '$lib/Switch.svelte'
 
-  // import '$lib/theme.css'
   import { onMount } from 'svelte'
 
   export let padding = true
