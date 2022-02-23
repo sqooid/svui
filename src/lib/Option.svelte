@@ -33,7 +33,7 @@
   .svui-option {
     padding: 10px;
     cursor: pointer;
-    background-color: var(--svui-background);
+    background-color: var(--svui-elev-1);
     color: var(--svui-text);
     display: flex;
     flex-direction: row;
@@ -54,7 +54,7 @@
   .svui-option:hover,
   .svui-option:focus-visible {
     outline: none;
-    background-color: var(--svui-elev-1);
+    background-color: var(--svui-elev-2);
   }
 
   .svui-option-title {
