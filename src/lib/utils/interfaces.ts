@@ -15,6 +15,8 @@ export interface Theme {
 
   error: string
   onError: string
+
+  shadow: string
 }
 
 export interface ThemeOverrides {

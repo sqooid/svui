@@ -77,7 +77,7 @@
   }
   button:global(.primary) {
     background-color: var(--svui-primary);
-    color: var(--svui-background);
+    color: var(--svui-on-primary);
   }
   button:global(.primary:hover) {
     backdrop-filter: brightness(50%);

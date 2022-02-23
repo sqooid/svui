@@ -2,13 +2,12 @@
   import Button from '$lib/Button.svelte'
   import ThemeDecorator from '$lib/ThemeDecorator.svelte'
   import { Meta, Story, Template } from '@storybook/addon-svelte-csf'
-  import SvuiRoot from '$lib/SvuiRoot.svelte'
 </script>
 
 <Template let:args>
-  <SvuiRoot>
+  <ThemeDecorator>
     <Button {...args} />
-  </SvuiRoot>
+  </ThemeDecorator>
 </Template>
 
 <Meta

@@ -1,10 +1,15 @@
 <script lang="ts">
+  import SvuiRoot from '$lib/SvuiRoot.svelte'
+  import Switch from '$lib/Switch.svelte'
+
   // import '$lib/theme.css'
   import { onMount } from 'svelte'
 
   export let padding = true
 
   let decorator
+  let darkMode = false
+  $: theme = darkMode ? 'dark' : 'light'
 
   onMount(() => {
     if (!padding) {
@@ -15,7 +20,12 @@
 </script>
 
 <div class="decorator" bind:this={decorator}>
-  <slot />
+  <SvuiRoot global {theme}>
+    <slot />
+    <div class="theme-switch">
+      <Switch bind:checked={darkMode} />
+    </div>
+  </SvuiRoot>
 </div>
 
 <style>
@@ -26,10 +36,10 @@
     left: 0;
     right: 0;
     padding: 20px;
-    font-family: var(--svui-font);
-    background-color: var(--svui-background);
-    transition-property: background-color, color;
-    transition-timing-function: ease-in-out;
-    transition-duration: 0.2s;
+  }
+  .theme-switch {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
   }
 </style>
