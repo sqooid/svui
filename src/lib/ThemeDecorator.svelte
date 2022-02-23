@@ -1,5 +1,5 @@
 <script lang="ts">
-  import '$lib/theme.css'
+  // import '$lib/theme.css'
   import { onMount } from 'svelte'
 
   export let padding = true
