@@ -1,11 +1,17 @@
 <script lang="ts">
   export let value = ''
   export let placeholder = ''
+  export let invalid = false
   let focused = false
 </script>
 
 <div class="svui-text-input-wrapper">
-  <input class="svui-text-input" type="text" bind:value placeholder=" " />
+  <input
+    class="svui-text-input"
+    type="text"
+    bind:value
+    placeholder=" "
+    class:invalid />
   <label for="" class="svui-text-input-label">
     <span class="svui-text-input-label-text" class:focused>
       {placeholder}
@@ -57,5 +63,8 @@
     border: 1px solid var(--svui-elev-2);
     color: var(--svui-text);
     padding: 10px;
+  }
+  .svui-text-input.invalid {
+    border-color: var(--svui-error);
   }
 </style>
