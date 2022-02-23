@@ -31,7 +31,7 @@ describe('objToCssVars', () => {
       onPrimary: '#098321',
     }
     expect(objToCssVars(obj)).to.equal(
-      '--primary: #123456;--on-primary: #098321;',
+      '--svui-primary: #123456;--svui-on-primary: #098321;',
     )
   })
 })

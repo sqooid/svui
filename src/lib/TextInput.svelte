@@ -13,7 +13,7 @@
     placeholder=" "
     class:invalid />
   <label for="" class="svui-text-input-label">
-    <span class="svui-text-input-label-text" class:focused>
+    <span class="svui-text-input-label-text">
       {placeholder}
     </span>
   </label>
@@ -25,7 +25,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: var(--svui-background);
+    border-radius: 5px;
   }
   .svui-text-input-label {
     pointer-events: none;
@@ -35,13 +35,13 @@
     background-color: inherit;
   }
   .svui-text-input-label-text {
+    background-color: var(--svui-background);
+    border-radius: 5px;
     position: absolute;
-    background-color: inherit;
     width: max-content;
-    transition-property: transform color;
-    transition-timing-function: ease-out;
-    transition-duration: 0.1s;
-    color: var(--svui-elev-2);
+    transition: top 0.1s ease-out, color 0.1s ease-out, font-size 0.1s ease-out,
+      background-color 0.2s linear;
+    color: var(--svui-placeholder);
     top: 9.5px;
   }
   .svui-text-input:focus + .svui-text-input-label .svui-text-input-label-text,
@@ -53,6 +53,7 @@
     top: -7px;
   }
   .svui-text-input {
+    background-color: var(--svui-background);
     pointer-events: all;
     background-color: inherit;
     font-family: var(--svui-font);
@@ -63,8 +64,17 @@
     border: 1px solid var(--svui-elev-2);
     color: var(--svui-text);
     padding: 10px;
+    transition-duration: 0.2s;
+  }
+  .svui-text-input:focus {
+    border-color: var(--svui-primary);
   }
   .svui-text-input.invalid {
     border-color: var(--svui-error);
+  }
+  .svui-text-input.invalid
+    + .svui-text-input-label
+    .svui-text-input-label-text {
+    color: var(--svui-error);
   }
 </style>

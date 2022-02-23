@@ -12,6 +12,7 @@
       light: {
         background: '#fafafa',
         text: '#000000',
+        placeholder: '#777777',
         elev1: '#ededed',
         elev2: '#e7e7e7',
         primary: '#58f356',
@@ -24,6 +25,7 @@
       dark: {
         background: '#121212',
         text: '#ffffff',
+        placeholder: '#777777',
         elev1: '#1d1d1d',
         elev2: '#212121',
         primary: '#03fbf2',
@@ -50,8 +52,8 @@
     backgroundColor: 'var(--svui-background)',
     color: 'var(--svui-text)',
     fontFamily: 'var(--svui-font)',
-    transitionProperty: 'background-color color',
-    transitionTimingFunction: 'linear',
+    transitionProperty: 'background-color, color',
+    transitionTimingFunction: 'ease-out',
     transitionDuration: '0.2s',
   }
 

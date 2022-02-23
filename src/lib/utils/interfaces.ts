@@ -2,6 +2,8 @@ export interface ThemeOptions {
   background: string
   text: string
 
+  placeholder: string
+
   elev1: string
   elev2: string
 

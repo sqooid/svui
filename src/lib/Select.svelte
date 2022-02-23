@@ -22,7 +22,7 @@
   let selected: Option = { value: '', title: '' }
   let expanded = false
   let focused = false
-  let valid = true
+  let invalid = false
   let edited = false
 
   $: filteredOptions = searchable
@@ -72,7 +72,7 @@
   const onUnfocus = () => {
     if (!inputValue) focused = false
     unexpandOptions()
-    valid = !edited
+    invalid = edited
     inputRef.blur()
   }
   const onBlur = () => {
@@ -155,7 +155,7 @@
     class:focused
     class:expanded
     class:disabled
-    class:valid
+    class:invalid
     on:blur={onBlur}
     on:mousedown={onMouseDown}
     on:input={onInput}
@@ -194,7 +194,6 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: var(--svui-background);
     margin-top: 7px;
   }
   .svui-select:not(.disabled) {
@@ -226,16 +225,15 @@
     font-family: var(--svui-font);
     position: absolute;
     left: 10px;
-    background-color: inherit;
   }
   .svui-select-label-text {
+    background-color: var(--svui-background);
     position: absolute;
-    background-color: inherit;
     width: max-content;
-    transition-property: transform color;
+    transition-property: top, color, font-size, background-color;
     transition-timing-function: ease-out;
-    transition-duration: 0.1s;
-    color: var(--svui-elev-2);
+    transition-duration: 0.1s, 0.1s, 0.1s, 0.2s;
+    color: var(--svui-placeholder);
     top: 9.5px;
   }
 
@@ -246,17 +244,19 @@
     top: -7px;
   }
   .svui-select-value {
+    background-color: var(--svui-background);
     appearance: none;
     cursor: pointer;
     outline: none;
     border-radius: 5px;
     font-size: 16px;
     pointer-events: all;
-    background-color: inherit;
     font-family: var(--svui-font);
     border: 1px solid var(--svui-elev-2);
     color: var(--svui-text);
     padding: 10px;
+    transition-timing-function: ease-out;
+    transition-duration: 0.2s;
   }
   .svui-select-value.searchable {
     cursor: auto;
@@ -272,8 +272,13 @@
     user-select: none;
     cursor: pointer;
   }
-  .svui-select-value:not(.valid):not(.expanded) {
+  .svui-select-value.invalid:not(.expanded) {
     border-color: var(--svui-error);
+  }
+  .svui-select-value.invalid:not(.expanded)
+    + .svui-select-label
+    .svui-select-label-text {
+    color: var(--svui-error);
   }
   .svui-select-value:focus-visible {
     border-color: var(--svui-primary);

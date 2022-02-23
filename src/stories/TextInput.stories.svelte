@@ -19,6 +19,9 @@
   }} />
 
 <Story name="Normal" args={{ placeholder: 'Text input', value: '' }} />
+<Story
+  name="Invalid"
+  args={{ placeholder: 'Text input', value: '', invalid: true }} />
 
 <style>
 </style>
