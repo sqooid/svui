@@ -78,8 +78,10 @@
   button:global(.primary) {
     background-color: var(--svui-primary);
     color: var(--svui-on-primary);
+    transition: box-shadow 0.1s ease-out;
   }
   button:global(.primary:hover) {
-    backdrop-filter: brightness(50%);
+    /* backdrop-filter: brightness(50%); */
+    box-shadow: var(--svui-shadow);
   }
 </style>

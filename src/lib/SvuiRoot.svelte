@@ -38,7 +38,7 @@
     },
     general: {
       font: "'Roboto', sans-serif",
-      shadow: '0 2px 10px -5px #0e0e0e',
+      shadow: '0 2px 10px -5px #0008, 2px 2px 10px -5px #0005',
     },
   }
 
