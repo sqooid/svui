@@ -7,8 +7,11 @@
 
 <style>
   .svui-icon-nav-bar {
+    position: absolute;
+    z-index: 1;
     box-sizing: border-box;
-    box-shadow: 0 0 10px -5px #0007;
+    /* box-shadow: 0 1px 10px -5px #000; */
+    box-shadow: var(--svui-shadow);
     display: flex;
     flex-direction: column;
     gap: 10px;
