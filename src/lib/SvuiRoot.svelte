@@ -46,6 +46,8 @@
 
   const lightStr = objToCssVars(options.themes.light)
   const darkStr = objToCssVars(options.themes.dark)
+
+  $: styleStr = theme === 'light' ? lightStr : darkStr
   const generalStr = objToCssVars(options.general)
 
   const appliedStyle = {
@@ -61,8 +63,6 @@
   onMount(() => {
     if (global) {
       Object.assign(document.body.style, appliedStyle)
-    } else {
-      Object.assign(ref.style, appliedStyle)
     }
   })
 </script>
@@ -73,12 +73,16 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
     rel="stylesheet" />
-  {@html `<${'style'}>body{${
-    (theme === 'light' ? lightStr : darkStr) + generalStr
-  }}</style>}`}
+  {#if global}
+    {@html `<${'style'}>body{${styleStr + generalStr}}</style>}`}
+  {/if}
 </svelte:head>
 
-<div id="svui-root" class={theme} bind:this={ref}>
+<div
+  id="svui-root"
+  class={theme}
+  bind:this={ref}
+  style={global ? '' : styleStr + generalStr}>
   <slot />
 </div>
 
@@ -86,5 +90,11 @@
   #svui-root {
     width: 100%;
     height: 100%;
+    background-color: var(--svui-background);
+    color: var(--svui-text);
+    font-family: var(--svui-font);
+    transition-property: background-color, color;
+    transition-timing-function: ease-out;
+    transition-duration: 0.2s;
   }
 </style>
