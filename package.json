@@ -1,6 +1,14 @@
 {
   "name": "svui",
   "version": "0.0.1",
+  "description": "A Svelte component library loosely based on Material Design",
+  "keywords": [
+    "svelte",
+    "sveltejs",
+    "component",
+    "component-library",
+    "material"
+  ],
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
